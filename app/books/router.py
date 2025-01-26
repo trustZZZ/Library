@@ -1,9 +1,8 @@
 
 from fastapi import APIRouter
-from sqlalchemy import select
 
-from app.books.models import Books
-from app.dao_main import LibraryDAO
+from app.books.dao_main import LibraryDAO
+from app.books.schemas import SBooks
 
 router = APIRouter(
     prefix="/library",
@@ -11,6 +10,6 @@ router = APIRouter(
 )
 
 @router.get("")
-async def get_books():
-    result = await LibraryDAO.find_by_id(model_id=1)
+async def get_books() -> list[SBooks]:
+    result = await LibraryDAO.get_all()
     return result
