@@ -10,7 +10,9 @@
 
 Затем необходимо ввести в командную строку
      alembic init migrations для создания файла с миграциями и скопировать в новый файл вместо env.py файл из репозитория с тем же названием из папки migrations (путь: ...app\migrations\env.py)
+     
 Затем новую папку migrations (с замененным env.py) переместить на уровень ниже, вместо папки из репозитория, и заменить (их Library\migrations -> Library\app\migrations)
+
 Далее ввести команды
      alembic revision --autogenerate
      alembic upgrade head
