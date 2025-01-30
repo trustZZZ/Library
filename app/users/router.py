@@ -8,6 +8,7 @@ from starlette.responses import Response
 
 
 from app.exceptions import *
+from app.logger import logger
 from app.users.auth import get_password_hash, authenticate_user, create_access_token
 from app.users.dao import UsersDAO
 from app.users.dependencies import get_role, get_role
@@ -25,6 +26,7 @@ async def register_user(user_data: SUsers):
         raise UserAlreadyExistsException
     hashed_password = get_password_hash(user_data.password)
     await UsersDAO.add(email=user_data.email, hashed_password=hashed_password, role='user', quantity=0)
+    logger.info(msg=f'User has registered with email', extra={"email":user_data.email})
 
 @router.post("/login")
 async def login_user(response: Response, user_data: SUsers):

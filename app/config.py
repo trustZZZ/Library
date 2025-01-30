@@ -1,3 +1,4 @@
+from typing import Literal
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from os.path import join, dirname
 
@@ -15,5 +16,6 @@ class Settings(BaseSettings):
     DB_NAME: str
     SECRET_KEY: str
     ALGORITHM: str
+    LOG_LEVEL: Literal['INFO', 'DEBUG', 'ERROR']
 
 settings = Settings()
